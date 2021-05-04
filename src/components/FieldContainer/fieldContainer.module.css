@@ -1,0 +1,18 @@
+.topArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.select {
+  width: 120px;
+}
+
+.startBtn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 16px;
+  margin-left: 15px;
+}

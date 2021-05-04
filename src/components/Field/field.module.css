@@ -1,0 +1,15 @@
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+.fieldCell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+}
+
+.hovered {
+  background-color: blue;
+}

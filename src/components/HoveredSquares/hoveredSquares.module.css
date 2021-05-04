@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+}
+
+.cellsContainer {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.infoCell {
+  color: white;
+  background-color: teal;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 0;
+  border-radius: 5px;
+  margin: 4px;
+}
