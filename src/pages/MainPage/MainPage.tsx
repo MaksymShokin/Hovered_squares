@@ -4,7 +4,7 @@ import { FieldContainer } from '../../components/FieldContainer';
 import { HoveredSquares } from '../../components/HoveredSquares';
 import classes from './mainPage.module.css';
 
-export type FieldDataInfo = Record<
+type FieldDataInfo = Record<
   'easyMode' | 'normalMode' | 'hardMode',
   { field: number }
 >;
@@ -18,19 +18,23 @@ export const MainPage = () => {
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true);
+      try {
+        setIsLoading(true);
 
-      const response = await fetch('http://demo1030918.mockable.io/');
+        const response = await fetch('http://demo1030918.mockable.io/');
 
-      if (response.status !== 200) {
+        if (response.status !== 200) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const parsedResponse = await response.json();
+
+        setFieldData(parsedResponse);
+        setIsLoading(false);
+      } catch {
         setHasError(true);
-        throw new Error(`Failed to fetch data`);
+        setIsLoading(false);
       }
-
-      const parsedResponse = await response.json();
-
-      setFieldData(parsedResponse);
-      setIsLoading(false);
     })();
   }, []);
 
@@ -41,10 +45,10 @@ export const MainPage = () => {
 
   const fieldCellHoverHandler = useCallback(
     (index: number) => {
-      const arrayIndex = hoveredSquares.findIndex(elem => elem === index);
+      const itemIndex = hoveredSquares.findIndex(elem => elem === index);
       const arrayCopy = [...hoveredSquares];
 
-      arrayIndex >= 0 ? arrayCopy.splice(arrayIndex, 1) : arrayCopy.push(index);
+      itemIndex >= 0 ? arrayCopy.splice(itemIndex, 1) : arrayCopy.push(index);
 
       setHoveredSquares(arrayCopy);
     },
@@ -62,7 +66,7 @@ export const MainPage = () => {
   if (hasError) {
     return (
       <div className={classes.container}>
-        <h1>Failed to fetch error</h1>;
+        <h1>Failed to fetch data</h1>;
       </div>
     );
   }
