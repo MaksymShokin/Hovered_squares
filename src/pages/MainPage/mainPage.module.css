@@ -1,6 +1,4 @@
 .container {
-  flex: 1;
   display: flex;
-  padding-top: 100px;
-  justify-content: center;
+  padding: 100px 0 0 125px;
 }
